@@ -4,9 +4,10 @@ interface probs
 {
   items: string[];
   heading: string;
+  onSelectItem: (item: string) => void;
 }
 
-function ListGroup({ items, heading }: probs)
+function ListGroup({ items, heading, onSelectItem }: probs)
 {
   let [selectedIndex, setSelectedIndex] = useState(-1);
 
@@ -20,7 +21,7 @@ function ListGroup({ items, heading }: probs)
           <li
             className={index === selectedIndex ? "list-group-item active" : "list-group-item"}
             key={item}
-            onClick={() => setSelectedIndex(index)}
+            onClick={() => { setSelectedIndex(index); onSelectItem(item); }}
           >
             {item}
           </li>
